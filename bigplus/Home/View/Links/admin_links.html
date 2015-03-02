@@ -1,0 +1,40 @@
+<include file="Index:header" />
+<body class="head-fixed">
+<form action="{:U('Links/post_admin_links')}" method="post">
+<div class="am-g">
+    <div class="col-md-8 col-md-offset-2 col-sm-12">
+		<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+		  <!--列表标题-->
+		  <div class="am-list-news-hd am-cf">
+			<!--带更多链接-->
+			<a href="###">
+			  <h1>管理站点</h1>
+			</a>
+		  </div>
+		  <div class="am-list-news-bd">
+			<ul class="am-list" id="list_info">
+			  <volist name="rs" id="vo">
+			  <li class="am-g">
+				<input type="checkbox" name="p[]" value="{$vo.link_id}-nextbig-{$vo.title}-nextbig-{$vo.url}" > &nbsp;&nbsp;<a href="{$vo.url}" class="am-list-item-hd" target="_blank" >{$vo.title}</a>
+			  </li>
+			  </volist>
+			</ul>
+		  </div>
+		</div>
+    </div>
+</div>
+
+<div class="am-g">
+    <div class="col-md-8 col-md-offset-2 col-sm-12">
+    <input type="text" name="link_title">
+    </div>
+    <div class="col-md-8 col-md-offset-2 col-sm-12">
+    <input type="text" name="ID" value="{$wpid}"><a href="http://i.nextbig.net/wp-admin/post.php?post={$wpid}&action=edit">查看</a>
+    </div>
+    <div class="col-md-8 col-md-offset-2 col-sm-12">
+    <button type="submit">提交</button>
+    </div>
+</div>
+
+</form>
+<include file="Index:footer" />

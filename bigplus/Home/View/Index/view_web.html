@@ -1,0 +1,37 @@
+<include file="Index:header" />
+		<script type="text/javascript">
+        // 扩展API加载完毕后调用onPlusReady回调函数
+		var ws=null,embed=null;
+		document.addEventListener("plusready", onPlusReady, false);
+		function onPlusReady() {
+			ws=plus.webview.currentWebview();
+			embed=plus.webview.create("http://www.36kr.com","embed",{top:"51px",bottom:"0px"});
+			ws.append(embed);
+			embed.addEventListener("loaded",onBrowserLoading,false);
+		}
+		function close_web(){
+			//plus.webview.close(ws);	
+			//var url = "http://3wshenzhen.sinaapp.com/";
+			//plus.ui.createWindow(url).show();
+			//embed.loadURL("http://www.baidu.com");
+			
+			embed.close();
+			var url = "http://3wshenzhen.sinaapp.com/";
+			plus.ui.createWindow(url).show();
+		}
+        </script>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style=" min-height:50px; max-height:50px;">
+			<div class="row">
+				<div class="col-xs-3">
+					<h3 style="margin-left: 10px;;"><a href="#" onclick="close_web();"><span class="glyphicon glyphicon-chevron-left"></span></a></h3>
+				</div>
+				<div class="col-xs-9">
+					<h3>互联网的深圳</h3>
+				</div>
+			</div>
+
+		</nav>
+<div id="sidr">
+	<include file="Index:silder" />
+</div>
+<include file="Index:footer" />

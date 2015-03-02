@@ -1,0 +1,26 @@
+<include file="Index:header" />
+<body class="head-fixed">
+<include file="Index:menu" />
+<div class="am-container">
+	<div class="am-g">
+		<div class="col-md-8 col-md-offset-2 col-sm-12">
+			<form class="am-form" method="post"  action="{:U('Index/do_goodat')}">
+			  <fieldset>
+				<legend>Hello~{$Think.session.username}</legend>
+
+				<div class="am-form-group">
+				  <label for="goodat">您擅长、感兴趣的领域<small>多个用逗号隔开</small></label>
+				  <input type="text" class="" id="goodat" name="goodat" placeholder="互联网,创客,硬件……">
+				</div>
+
+				<div class="am-form-group">
+				  <label for="text">你的常用邮箱<small>方便小伙伴们找到您</small></label>
+				  <input type="email" class="" id="email" name="email" placeholder="username@domain.com">
+				</div>
+				<p><button type="submit" class="am-btn am-btn-default">提交</button></p>
+			  </fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+<include file="Index:footer" />

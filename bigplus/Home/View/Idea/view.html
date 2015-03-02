@@ -1,0 +1,92 @@
+<include file="Index:header" />
+<body class="head-fixed">
+<include file="Index:menu" />
+<div class="am-g">
+    <div class="col-md-8 col-md-offset-2 col-sm-12">
+		<div class="row">
+			<div class="col-sm-12">
+				<ul class="am-comments-list">
+					<li class="am-comment"><a href="#{$rs.username}"><img src="{$rs.headurl}" alt="" class="am-comment-avatar" width="48" height="48"></a>
+					<div class="am-comment-main">
+						<header class="am-comment-hd">
+						<div class="am-comment-meta">
+							<a href="#{$rs.username}" class="am-comment-author" title="{$rs.username}">{$rs.username}</a> 发布于 <time datetime="{:date("Y-m-d H:i",$rs['time'])}" title="{:date("Y-m-d H:i",$rs['time'])}">{:date("Y-m-d H:i",$rs['time'])}</time>
+						</div>
+						</header>
+						<div class="am-comment-bd">			
+							<blockquote>
+									<php>if($rs['url']){</php>
+									<a href="{$rs.url}" target="_blank" class=""><i class="am-icon-link"></i>{$rs.title}</a>
+									<php>}else{
+										echo $rs['title'];
+									}</php>
+							</blockquote>
+							<p>
+							{$rs.info}
+							</p>
+							<hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+							<div class="am-fr">
+								<span class="am-text-info am-text-sm">{$rs.tags}</span>
+								<!--<a href="#" class="am-text-success am-text-sm"><i class="am-header-icon am-icon-hand-o-up"></i>赞</a>-->
+							</div>
+						</div>
+					</div>
+					</li>
+					
+					<li class="am-comment">
+						<div class="row">
+							<div class="col-md-11 col-md-offset-1">
+								<form class="am-form"  method="post" id="myForm" action="#">
+								  <fieldset>                
+									<div class="am-form-group">
+									  <label for="info">我来说两句</label>
+									  <textarea class="" rows="3" id="info" name="info" placeholder="我来说两句"></textarea>
+									</div>
+									<p><button type="submit" class="am-btn am-btn-success am-fr">提交</button></p>
+								  </fieldset>
+								</form>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+		<div class="row">
+			<div class="col-md-11 col-md-offset-1">
+				<ul class="am-comments-list">
+					<volist name="c" id="vo">
+					<li class="am-comment"><a href="#{$vo.username}"><img src="{$vo.headurl}" alt="" class="am-comment-avatar" width="48" height="48"></a>
+					<div class="am-comment-main">
+						<header class="am-comment-hd">
+						<div class="am-comment-meta">
+							<a href="#{$vo.username}" class="am-comment-author" title="{$vo.username}">{$vo.username}</a> 评论于 <time datetime="{:date("Y-m-d H:i",$vo['time'])}" title="{:date("Y-m-d H:i",$vo['time'])}">{:date("Y-m-d H:i",$vo['time'])}</time>
+						</div>
+						</header>
+						<div class="am-comment-bd">
+							<p>
+							{$vo.info}
+							</p>
+						</div>
+					</div>
+					</li>
+					</volist>
+				</ul>
+			</div>
+		</div>
+    </div>
+</div>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery.form/3.50/jquery.form.min.js"></script>
+<script>
+// 准备好Options对象
+var options = {
+    url:        '{:U('Idea/post_comments',array('idea_id'=>$rs['idea_id']))}',
+    success: function(d) {
+      location.href = d.url;
+    } };
+
+   // 将options传给ajaxForm
+$('#myForm').ajaxForm(options);
+</script>
+<include file="Index:footer" />

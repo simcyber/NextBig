@@ -1,0 +1,6 @@
+<div class="list-group">
+	<volist name="rs" id="vo">
+	<a href="{$vo.link}" class="list-group-item" target="_blank">{$vo.title}</a>
+	<a href="{:U('Index/del',array('lid'=>$vo['lid']))}" class="list-group-item list-group-item-danger">删除</a>
+	</volist>
+</div>

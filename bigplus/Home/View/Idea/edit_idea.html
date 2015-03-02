@@ -1,0 +1,74 @@
+<include file="Index:header" />
+<body class="head-fixed">
+<include file="Index:menu" />
+<div class="am-g">
+    <div class="col-md-6 col-md-offset-3 col-sm-12">
+		<div class="row">
+			<div class="col-sm-12">
+
+                <form class="am-form" id="myForm"  method="post"  action="#">
+                  <fieldset>                
+                    <div class="am-form-group">
+                      <label for="title">标题</label>
+                      <input type="text" class="" id="title" name="title" placeholder="概述一下您的想法、产品" value="{$rs['title']}">
+                    </div>
+					<div class="am-form-group">
+                      <label for="tags">标签</label>
+                      <input type="text" class="" id="tags" name="tags" placeholder="互联网,可穿戴,设备" value="{$rs['tags']}">
+                    </div>
+                    <div class="am-form-group">
+                      <label for="info">详细</label>
+                      <textarea class="" rows="3" id="info" name="info" placeholder="用简短的话描述一下" >{$rs['info']}</textarea>
+                    </div>
+					<div class="am-form-group">
+                      <label for="url">产品链接<small class="am-text-warning">选填</small></label>
+                      <input type="text" class="" id="url" name="url" placeholder="http://....." value="{$rs['url']}">
+                    </div>
+					<div class="am-form-group">
+					  <label class="am-radio-inline">
+						<input type="radio" name="infotype" value="1" required>新产品
+					  </label>
+					  <label class="am-radio-inline">
+						<input type="radio" name="infotype" value="2" required>好文章
+					  </label>
+					  <label class="am-radio-inline">
+						<input type="radio" name="infotype" value="3" required>新想法
+					  </label>
+                      <label class="am-radio-inline">
+						<input type="radio" name="infotype" value="6" required>日报
+					  </label>
+					</div>
+                    <div class="am-form-group am-fr">
+					<!--
+					  <label class="am-checkbox-inline">					
+						<input type="checkbox" name="share_social" value="1"><small>分享到社交网络</small>
+					  </label>
+					-->
+					  <label class="am-checkbox-inline">					
+						<button type="submit" class="am-btn am-btn-success am-fr">提交</button>
+					  </label>
+					</div>
+                  </fieldset>
+                </form>
+                
+
+			</div>
+		</div>
+    </div>
+</div>
+<php>$url="http://".$_SERVER['HTTP_HOST'].U('Index/index');</php>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery.form/3.50/jquery.form.min.js"></script>
+<script>
+// 准备好Options对象
+var options = {
+    url:       "{:U('Idea/post_edit_idea',array('idea_id'=>$ids['idea_id']))}",
+    success: function() {
+      location.href = "{$url}";
+    } };
+
+   // 将options传给ajaxForm
+$('#myForm').ajaxForm(options);
+</script>
+
+<include file="Index:footer" />

@@ -1,0 +1,45 @@
+<include file="Index:header" />
+<body class="head-fixed">
+<include file="Index:menu" />
+<div class="am-g">
+    <div class="col-md-8 col-md-offset-2 col-sm-12">
+		<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+		  <!--列表标题-->
+		  <div class="am-list-news-hd am-cf">
+			<!--带更多链接-->
+			<a href="###">
+			  <h2>它山之石-Links</h2>
+			</a>
+		  </div>
+		  <div class="am-list-news-bd">
+			<ul class="am-list" id="list_info">
+			  <volist name="rs" id="vo">
+			  <li class="am-g">
+				<a href="{$vo.url}" class="am-list-item-hd" target="_blank" >{$vo.title}</a>
+			  </li>
+			  </volist>
+			</ul>
+		  </div>
+		  <!--更多在底部-->
+		  <div class="am-list-news-ft">
+			<a class="am-list-news-more am-btn am-btn-default" href="###" id="get_more" page="1">查看更多 &raquo;</a>
+		  </div>
+		</div>
+    </div>
+</div>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $('#get_more').click(function() {
+		var page= $(this).attr("page");
+		var page1=parseInt(page);
+		page1=page1+1;
+		$(this).attr("page",page1);
+		$.get("{:U('Links/get_more')}", { page: page},
+			function(d){
+				$('#list_info').append(d.li);
+			}
+		);
+		
+    });
+</script>
+<include file="Index:footer" />

@@ -1,0 +1,129 @@
+<include file="Index:header" />
+  <body class="head-fixed">
+<style type="text/css">
+    .hope {
+      color: #1E5B94;
+      padding: 50px 0;
+    }
+
+    .hope-img {
+      text-align: center;
+    }
+
+    .hope-hr {
+      border-color: #149C88;
+    }
+
+    .hope-title {
+      font-size: 140%;
+    }
+</style>
+<div class="hope">
+  <div class="am-g am-container">
+    <div class="col-lg-4 col-md-6 col-sm-12 hope-img">
+      <span class="en" style="font-size: 640%;" data-am-scrollspy="{animation:'slide-left', repeat: true}">
+	  <a href="{:U('Index/index')}" >NextBig</a>
+	  </span>
+      <hr class="am-article-divider am-show-sm-only hope-hr">
+    </div>
+    <div class="col-lg-8 col-md-6 col-sm-12" align="center"  data-am-scrollspy="{animation:'scale-up', delay: 500, repeat: false}">
+		<div class="am-g">
+			<div class="col-sm-12">
+			<p>
+			<span style="font-size:200%;" class="en">Bigger than bigger </span>
+			</p>
+			<p>
+			发现有趣的新产品，分享新想法~</p>
+			
+			</div>
+		</div>
+		<div class="am-g">
+			<div class="col-sm-12">
+			登录[支持QQ、新浪帐号]
+			</div>
+		</div>
+		<div class="am-g">
+			<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+				<div class="am-g">
+					<div class="col-sm-4">
+						<a href="https://openapi.baidu.com/social/oauth/2.0/authorize?response_type=code&client_id=UhdjecgNnGLkaXXMgxXG4hKN&media_type=qqdenglu&redirect_uri=http%3A%2F%2Fnextbig.net%2FIndex%2Fso_login%2Ftmp%2F1&state=anticsrfstring&display=page&client_type=web">
+						<img src="http://nextbig.net/ico/qq.png" width="100%">
+						</a>
+					</div>
+					<div class="col-sm-4">
+						<a href="https://openapi.baidu.com/social/oauth/2.0/authorize?response_type=code&client_id=UhdjecgNnGLkaXXMgxXG4hKN&media_type=sinaweibo&redirect_uri=http%3A%2F%2Fnextbig.net%2FIndex%2Fso_login%2Ftmp%2F1&state=anticsrfstring&display=page&client_type=web">
+						<img src="http://nextbig.net/ico/sina.png" width="100%">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+  </div>
+</div>
+<hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
+
+<style type="text/css">
+    .p_info:hover {
+      color:#339933;
+	  cursor:pointer;
+    }
+</style>
+<div class="am-g">
+	<div class="col-sm-12 col-md-8 col-md-offset-2">
+	<h2>最新发布的。。</h2>
+		<ul class="am-comments-list" id="list_info">
+			<volist name="rs" id="vo">
+				<li class="am-comment" id="cc_{$vo.idea_id}"><a href="{:U('Index/myidea',array('uid'=>$vo['uid']))}"><img src="{$vo.headurl}" alt="" class="am-comment-avatar" width="48" height="48"></a>
+				<div class="am-comment-main">
+					<header class="am-comment-hd">
+					<div class="am-comment-meta">
+						<a href="#{$vo.username}" class="am-comment-author" title="{$vo.username}">{$vo.username}</a> 发布于 <time datetime="{:date("Y-m-d H:i",$vo['time'])}" title="{:date("Y-m-d H:i",$vo['time'])}">{:date("Y-m-d H:i",$vo['time'])}</time>
+					</div>
+					</header>
+					<div class="am-comment-bd">			
+						<blockquote>
+							<php>if($vo['url']){</php>
+							<a href="{$vo.url}" target="_blank" class=""><i class="am-icon-link"></i>{$vo.title}</a>
+							<php>}else{
+								echo $vo['title'];
+							}</php>
+						</blockquote>
+						<div class="p_info" style="height:4.0rem;line-height:2rem; overflow:hidden;" onClick="show_info({$vo.idea_id})" id="show_info{$vo.idea_id}">
+							{$vo.info}
+						</div>
+						<span class="am-fr am-text-secondary am-text-sm">{$vo.tags}</span>
+					</div>
+				</div>
+				</li>
+			</volist>
+		</ul>
+		
+		<!--更多在底部-->
+		<div class="am-list-news-ft">
+			<a class="am-list-news-more am-btn am-btn-success" href="###" id="get_more" page="1">查看更多 &raquo;</a>
+		</div>
+				
+	</div>
+</div>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script>
+	function show_info(idea_id){
+		$("#show_info"+idea_id).removeClass("p_info");
+		$("#show_info"+idea_id).removeAttr("style");
+	}
+
+	$('#get_more').click(function() {
+		var page= $(this).attr("page");
+		var page1=parseInt(page);
+		page1=page1+1;
+		$(this).attr("page",page1);
+		$.get("{:U('Api/get_more')}", { page: page},
+			function(d){
+				$('#list_info').append(d.li);
+			}
+		);
+		
+    });
+</script>
+<include file="Index:footer" />
