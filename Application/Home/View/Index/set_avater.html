@@ -1,0 +1,35 @@
+<include file="Public/header.html" />
+<div class="am-g">
+  <div class="am-u-lg-4 am-u-md-6 am-u-sm-centered">
+
+    <br>
+    <br>
+	<div style="text-align: center;">
+	<img id="avatar_change" width="30%" src="__PUBLIC__/img/_{$avatar_id}.png" alt="头像" class="am-img-thumbnail am-circle">
+	</div>
+	
+    <form action="{:U('Index/do_set_avatar')}" method="post" class="am-form">
+
+	<br>
+      <label for="nickname">昵称:</label>
+      <input type="text" name="nickname" id="nickname" value="{$Think.session.nickname}">
+	  <input name="avatar" id="avatar" type="text" style="display:none;" value="__PUBLIC__/img/_{$avatar_id}.png">
+	  <br>
+	  <label for="email">邮箱:</label>
+      <input type="email" readonly="readonly" name="email" id="email" value="{$Think.session.email}">
+	  <br>
+      <div class="am-cf">
+        <input type="submit" value="设 置" class="am-btn am-btn-primary am-btn-sm am-fl">
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+$("#avatar_change").click(function(){
+	$.getJSON("{:U('Index/get_avatar')}", function(json){
+		$("#avatar_change").attr("src",json.url.toString());
+		$("#avatar").val(json.url.toString());
+	});
+});
+</script>
+<include file="Public/footer.html" />

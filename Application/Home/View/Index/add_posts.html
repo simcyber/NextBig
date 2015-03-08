@@ -1,0 +1,36 @@
+<include file="Public/header.html" />
+
+<div class="am-g">
+	<div class="am-u-md-10 am-u-md-centered">
+		<div class="am-g">
+			<div class="am-u-md-8">
+				<form action="{:U('Index/do_add_post')}" method="post" class="am-form">
+				<br>
+				<label for="nickname">标题:<small style="color:#F00;">(可选)</small></label>
+				<input type="text" name="title" id="title" value="">
+				<br>
+				<label for="nickname">内容:</label>
+				<textarea style="font-family:'Microsoft YaHei'; width:100%; height:160px;" name="body"></textarea>
+				
+				<br>
+				<label for="nickname">标签:</label>
+					<select name="tag" data-am-selected="{maxHeight: 100}">
+					  <option value="默认">默认</option>
+					  <volist name="rs" id="vo">
+					  <option value="{$vo.tagname}">{$vo.tagname}</option>
+					  </volist>
+					</select>
+				<br />
+				<div class="am-cf">
+				<input type="submit" value="发 布" class="am-btn am-btn-primary am-btn-sm am-fr">
+				</div>
+				</form>
+			</div>
+			<div class="am-u-md-4">
+			<hr>
+			<a href="{:U('Index/add_posts')}" class="am-btn am-btn-secondary">发布话题</a>
+			</div>	
+		</div>
+	</div>
+</div>
+<include file="Public/footer.html" />

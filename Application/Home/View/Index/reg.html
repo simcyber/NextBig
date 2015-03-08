@@ -1,0 +1,25 @@
+<include file="Public/header.html" />
+<div class="am-g">
+  <div class="am-u-lg-4 am-u-md-6 am-u-sm-centered">
+
+    <br>
+    <br>
+
+    <form action="{:U('Index/do_reg')}" method="post" class="am-form">
+      <label for="email">邮箱:</label>
+      <input type="email" name="email" id="email" value="">
+      <br>
+      <label for="password">密码:</label>
+      <input type="password" name="password" id="password" value="">
+	  <br>
+      <label for="password1">确认密码:</label>
+      <input type="password" name="password1" id="password1" value="">
+      <br />
+      <div class="am-cf">
+        <input type="submit" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl">
+        <input type="submit" value="忘记密码 ^_^? " class="am-btn am-btn-default am-btn-sm am-fr">
+      </div>
+    </form>
+  </div>
+</div>
+<include file="Public/footer.html" />

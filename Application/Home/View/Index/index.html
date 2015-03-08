@@ -1,0 +1,40 @@
+<include file="Public/header.html" />
+<div class="am-g">
+	<div class="am-u-md-10 am-u-md-centered">
+		<div class="am-g">
+			<div class="am-u-md-8">
+			<if condition="$tag">
+			<h1 style="font-size:5rem;">{$tag}-标签</h1>
+			</if>
+			<br>
+			<volist name="rs" id="vo">
+				<article class="am-article">
+				  <div class="am-article-hd">
+					<h1 class="am-article-title">{$vo.title}</h1>
+					<p class="am-article-meta">{$vo.nickname} @{:date('Y-m-d H:i',$vo['time'])}					
+					</p>
+				  </div>
+
+				  <div class="am-article-bd">
+					<p>
+					<a href="{:U('Index/index',array('tag'=>urlencode($vo['tag'])))}" class="am-icon-edit am-btn am-btn-secondary am-btn-xs">{$vo.tag}</a>
+					{$vo.body}
+					</p>
+					<if condition="$Think.session.uid eq $vo['uid'] ">
+					<div class="am-fr">
+					<a href="##" class="am-icon-edit am-btn am-btn-danger am-btn-xs">修改</a>
+					</div>
+					</if>
+				  </div>
+				</article>
+				<hr>
+			</volist>
+			</div>
+			<div class="am-u-md-4">
+			<hr>
+			<a href="{:U('Index/add_posts')}" class="am-btn am-btn-secondary">发布话题</a>
+			</div>	
+		</div>
+	</div>
+</div>
+<include file="Public/footer.html" />
